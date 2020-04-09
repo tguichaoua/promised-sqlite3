@@ -1,3 +1,6 @@
+# don't track compiled files
+dist/
+
 # Logs
 logs
 *.log
