@@ -4,6 +4,7 @@ function error_dbNotOpened() { return new Error("The database is not open."); }
 
 export class PromisedDatabase {
 
+    /** @private */
     private _db: sqlite3.Database | undefined;
 
     constructor() { }
@@ -18,7 +19,7 @@ export class PromisedDatabase {
      * @param filename - filename used to instantiate sqlite3.Database.
      * @param mode - mode used to instantiate sqlite3.Database.
      */
-    open(filename: string, mode?: number): Promise<void> {
+    open(filename: string, mode: number = sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE): Promise<void> {
         return new Promise((resolve, reject) => {
             this._db = new sqlite3.Database(filename, mode,
                 function (err) {
