@@ -5,6 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
+        "docs": "typedoc --out ../docs/ ./src/",
         "build": "tsc",
         "clean": "rm -rf ./dist",
         "rebuild": "npm run clean && npm run build",
@@ -28,6 +29,7 @@
     },
     "homepage": "https://github.com/baanloh/promised-sqlite3#readme",
     "devDependencies": {
+        "typedoc": "^0.17.4",
         "typescript": "^3.8.3"
     },
     "dependencies": {
