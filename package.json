@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "docs": "typedoc ./src/ --disableOutputCheck ",
+        "docs": "typedoc ./src/ --disableOutputCheck --out ./docs/v1/",
         "build": "tsc",
         "clean": "rm -rf ./dist",
         "rebuild": "npm run clean && npm run build",

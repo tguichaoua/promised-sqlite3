@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 
-
+/** @ignore */
 function error_dbNotOpened() { return new Error("The database is not open."); }
 
 export class PromisedDatabase {
