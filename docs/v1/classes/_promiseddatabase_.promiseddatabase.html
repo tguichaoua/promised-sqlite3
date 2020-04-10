@@ -100,17 +100,23 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Other Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#all" class="tsd-kind-icon">all</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#close" class="tsd-kind-icon">close</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#createtable" class="tsd-kind-icon">create<wbr>Table</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#droptable" class="tsd-kind-icon">drop<wbr>Table</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#each" class="tsd-kind-icon">each</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#exec" class="tsd-kind-icon">exec</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#open" class="tsd-kind-icon">open</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#run" class="tsd-kind-icon">run</a></li>
+							</ul>
+							<h3>Shortcut Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#createtable" class="tsd-kind-icon">create<wbr>Table</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#droptable" class="tsd-kind-icon">drop<wbr>Table</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#insert" class="tsd-kind-icon">insert</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#insertmany" class="tsd-kind-icon">insert<wbr>Many</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_promiseddatabase_.promiseddatabase.html#replace" class="tsd-kind-icon">replace</a></li>
 							</ul>
 						</section>
 					</div>
@@ -128,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L9">PromisedDatabase.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L6">PromisedDatabase.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_promiseddatabase_.promiseddatabase.html" class="tsd-signature-type">PromisedDatabase</a></h4>
@@ -144,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">_db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Database</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L9">PromisedDatabase.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L6">PromisedDatabase.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -163,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L16">PromisedDatabase.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L13">PromisedDatabase.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +181,7 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
+				<h2>Other Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="all" class="tsd-anchor"></a>
 					<h3>all</h3>
@@ -186,12 +192,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L103">PromisedDatabase.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L103">PromisedDatabase.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Execute a sql request. Used for request that return data. (eg <code>SELECT</code>).
+									<p>Execute a sql request.<br>
+										Used for request that return data. (eg <code>SELECT</code>).<br>
 									Return all rows that match the request in a array.</p>
 								</div>
 								<dl class="tsd-comment-tags">
@@ -229,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L39">PromisedDatabase.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L36">PromisedDatabase.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,88 +254,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="createtable" class="tsd-anchor"></a>
-					<h3>create<wbr>Table</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Table<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, ifNotExists<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, <span class="tsd-signature-symbol">...</span>cols<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L180">PromisedDatabase.ts:180</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Add a table to the database.
-									Shortcut for <code>CREATE TABLE [IF NOT EXISTS] tableName (...)</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>name of the table to create.</p>
-									</div>
-								</li>
-								<li>
-									<h5>ifNotExists: <span class="tsd-signature-type">boolean</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>if set to true, add <code>IF NOT EXISTS</code> clause to the request.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>cols: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>column definitions.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="droptable" class="tsd-anchor"></a>
-					<h3>drop<wbr>Table</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">drop<wbr>Table<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, ifExists<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L191">PromisedDatabase.ts:191</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Delete a table from the database.
-									Shortcut for <code>DROP TABLE [IF EXISTS] tableName</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>name of the table.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> ifExists: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>if set to true, add <code>IF EXISTS</code> clause to the request.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="each" class="tsd-anchor"></a>
 					<h3>each</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -338,14 +263,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L127">PromisedDatabase.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L128">PromisedDatabase.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Execute a sql request. Used for request that return data. (eg <code>SELECT</code>).
-										Execute the callback <code>cb</code> for each row.
-									Return the number of retrieved rows.</p>
+									<p>Execute a sql request.<br>
+										Used for request that return data. (eg <code>SELECT</code>).<br>
+										Execute the callback <code>cb</code> for each row.<br>
+									Return the number of retrieved rows.<br></p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
@@ -406,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L159">PromisedDatabase.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L160">PromisedDatabase.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -442,12 +368,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L81">PromisedDatabase.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L80">PromisedDatabase.ts:80</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Execute a sql request. Used for request that return data. (eg <code>SELECT</code>).
+									<p>Execute a sql request.<br>
+										Used for request that return data. (eg <code>SELECT</code>).<br>
 									Return only the first row that match the request.</p>
 								</div>
 								<dl class="tsd-comment-tags">
@@ -485,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L24">PromisedDatabase.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L21">PromisedDatabase.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,12 +454,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/6dccd8d/src/PromisedDatabase.ts#L59">PromisedDatabase.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L57">PromisedDatabase.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Execute a sql request. Used for request that return nothing (eg <code>INSERT INTO</code>, <code>CREATE TABLE</code>)</p>
+									<p>Execute a sql request.<br>
+									Used for request that return nothing (eg <code>INSERT INTO</code>, <code>CREATE TABLE</code>)</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
@@ -552,6 +480,243 @@
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Parameters for the request.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Shortcut Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createtable" class="tsd-anchor"></a>
+					<h3>create<wbr>Table</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Table<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, ifNotExists<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, <span class="tsd-signature-symbol">...</span>cols<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L182">PromisedDatabase.ts:182</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a table to the database.<br>
+									Shortcut for <code>CREATE TABLE [IF NOT EXISTS] tableName (...)</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of the table to create.</p>
+									</div>
+								</li>
+								<li>
+									<h5>ifNotExists: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if set to true, add <code>IF NOT EXISTS</code> clause to the request.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>cols: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>column definitions.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="droptable" class="tsd-anchor"></a>
+					<h3>drop<wbr>Table</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">drop<wbr>Table<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, ifExists<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L194">PromisedDatabase.ts:194</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Delete a table from the database.<br>
+									Shortcut for <code>DROP TABLE [IF EXISTS] tableName</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of the table.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> ifExists: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if set to true, add <code>IF EXISTS</code> clause to the request.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="insert" class="tsd-anchor"></a>
+					<h3>insert</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, row<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L223">PromisedDatabase.ts:223</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Insert <code>row</code>in table.<br>
+										Shortcut for <code>INSERT INTO tableName [(...)] VALUES (...)</code>.<br>
+										<code>row</code>&#39;s keys are used for table columns in the request. (Map or Object).<br>
+									if <code>row</code> is an Array, column names are omitted in the request.</p>
+								</div>
+								<p>Exemple:</p>
+								<pre><code class="language-typescript"><span class="hljs-comment">// table foo</span>
+<span class="hljs-comment">// id INTEGER PRIMARY KEY AUTOINCREMENT</span>
+<span class="hljs-comment">// name TEXT</span>
+<span class="hljs-comment">// age INTEGER</span>
+
+<span class="hljs-keyword">await</span> db.insert(<span class="hljs-string">"foo"</span>, { name: <span class="hljs-string">"Alice"</span>, age: <span class="hljs-number">20</span> });
+<span class="hljs-keyword">await</span> db.insert(<span class="hljs-string">"foo"</span>, [<span class="hljs-number">50</span>, <span class="hljs-string">"Bob"</span>, <span class="hljs-number">32</span>]); <span class="hljs-comment">// Array =&gt; column names are omitted so all values must be given.</span>
+
+<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> Map().set(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Conan"</span>).set(<span class="hljs-string">"age"</span>, <span class="hljs-number">53</span>);
+<span class="hljs-keyword">await</span> db.insert(<span class="hljs-string">"foo"</span>, m);</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of table.</p>
+									</div>
+								</li>
+								<li>
+									<h5>row: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>row to insert.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="insertmany" class="tsd-anchor"></a>
+					<h3>insert<wbr>Many</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Many<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, columnNames<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, <span class="tsd-signature-symbol">...</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L274">PromisedDatabase.ts:274</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Insert multiple rows in table.<br>
+										Shortcut for <code>REPLACE INTO tableName [(...)] VALUES (...),(...),...</code>.<br>
+										If <code>columnName</code> if <code>undefined</code> or empty, column names are omitted in the request.<br>
+										If <code>columnName</code> is defined, <code>culumnName</code>&#39;s values are used as keys to get values from each row.<br>
+										Except if the row is an Array.<br>
+									<strong>Warning</strong>: if <code>columnName</code> is <code>undefined</code> or empty, use only Array in <code>rows</code>. With Object or Map, values order is not guaranteed.</p>
+								</div>
+								<p>Exemple:</p>
+								<pre><code class="language-typescript"><span class="hljs-comment">// table foo</span>
+<span class="hljs-comment">// id INTEGER PRIMARY KEY AUTOINCREMENT</span>
+<span class="hljs-comment">// name TEXT</span>
+<span class="hljs-comment">// age INTEGER</span>
+
+<span class="hljs-keyword">const</span> a = {name: <span class="hljs-string">"Alice"</span>, age: <span class="hljs-number">20</span> };
+<span class="hljs-keyword">const</span> b = [<span class="hljs-string">"Bob"</span>, <span class="hljs-number">32</span>];
+<span class="hljs-keyword">const</span> c = <span class="hljs-keyword">new</span> Map().set(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Conan"</span>).set(<span class="hljs-string">"age"</span>, <span class="hljs-number">53</span>);
+<span class="hljs-keyword">await</span> db.insertMany(<span class="hljs-string">"foo"</span>, [<span class="hljs-string">"name"</span>, <span class="hljs-string">"age"</span>], a, b, c);</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of table.</p>
+									</div>
+								</li>
+								<li>
+									<h5>columnNames: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>column names.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>rows: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>rows to insert.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="replace" class="tsd-anchor"></a>
+					<h3>replace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">replace<span class="tsd-signature-symbol">(</span>tableName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, row<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RunResult</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/baanloh/promised-sqlite3/blob/d9670ce/src/PromisedDatabase.ts#L240">PromisedDatabase.ts:240</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Replace or insert <code>row</code> in the table.<br>
+									Shortcut for <code>REPLACE INTO tableName [(...)] VALUES (...)</code>.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><code>insert</code> for parameters usage and exemple</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tableName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of table.</p>
+									</div>
+								</li>
+								<li>
+									<h5>row: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>row to insert.</p>
 									</div>
 								</li>
 							</ul>
@@ -610,7 +775,16 @@
 								<a href="_promiseddatabase_.promiseddatabase.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_promiseddatabase_.promiseddatabase.html#insert" class="tsd-kind-icon">insert</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_promiseddatabase_.promiseddatabase.html#insertmany" class="tsd-kind-icon">insert<wbr>Many</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_promiseddatabase_.promiseddatabase.html#open" class="tsd-kind-icon">open</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_promiseddatabase_.promiseddatabase.html#replace" class="tsd-kind-icon">replace</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_promiseddatabase_.promiseddatabase.html#run" class="tsd-kind-icon">run</a>

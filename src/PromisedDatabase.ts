@@ -48,7 +48,8 @@ export class PromisedDatabase {
     }
 
     /**
-     * Execute a sql request. Used for request that return nothing (eg `INSERT INTO`, `CREATE TABLE`)
+     * Execute a sql request.<br>
+     * Used for request that return nothing (eg `INSERT INTO`, `CREATE TABLE`)
      * @see {@link https://github.com/mapbox/node-sqlite3/wiki/API#databaserunsql-param--callback | sqlite3.Database.run} for further information.
      * @param sql - The sql request.
      * @param params - Parameters for the request.
@@ -69,7 +70,8 @@ export class PromisedDatabase {
     }
 
     /**
-     * Execute a sql request. Used for request that return data. (eg `SELECT`).
+     * Execute a sql request.<br>
+     * Used for request that return data. (eg `SELECT`).<br>
      * Return only the first row that match the request.
      * @see {@link https://github.com/mapbox/node-sqlite3/wiki/API#databasegetsql-param--callback | sqlite3.Database.get} for further information.
      * @param sql - The sql request.
@@ -91,7 +93,8 @@ export class PromisedDatabase {
     }
 
     /**
-     * Execute a sql request. Used for request that return data. (eg `SELECT`).
+     * Execute a sql request.<br>
+     * Used for request that return data. (eg `SELECT`).<br>
      * Return all rows that match the request in a array.
      * @see {@link https://github.com/mapbox/node-sqlite3/wiki/API#databaseallsql-param--callback | sqlite3.Database.all} for further information.
      * @param sql - The sql request.
@@ -113,9 +116,10 @@ export class PromisedDatabase {
     }
 
     /**
-     * Execute a sql request. Used for request that return data. (eg `SELECT`).
-     * Execute the callback `cb` for each row.
-     * Return the number of retrieved rows.
+     * Execute a sql request.<br>
+     * Used for request that return data. (eg `SELECT`).<br>
+     * Execute the callback `cb` for each row.<br>
+     * Return the number of retrieved rows.<br>
      * @see {@link https://github.com/mapbox/node-sqlite3/wiki/API#databaseeachsql-param--callback-complete | sqlite3.Database.each} for further information.
      * @param sql - The sql request.
      * @param params - Parameters for the request.
@@ -168,9 +172,9 @@ export class PromisedDatabase {
     // ===[ SHORTCUT METHODS ]===============================================================
 
     /**
-     * Add a table to the database.
+     * Add a table to the database.<br>
      * Shortcut for `CREATE TABLE [IF NOT EXISTS] tableName (...)`.
-     * @category shortcut
+     * @category Shortcut
      * @param tableName - name of the table to create.
      * @param ifNotExists - if set to true, add `IF NOT EXISTS` clause to the request.
      * @param cols - column definitions.
@@ -181,9 +185,9 @@ export class PromisedDatabase {
     }
 
     /**
-     * Delete a table from the database.
+     * Delete a table from the database.<br>
      * Shortcut for `DROP TABLE [IF EXISTS] tableName`.
-     * @category shortcut
+     * @category Shortcut
      * @param tableName - name of the table.
      * @param ifExists - if set to true, add `IF EXISTS` clause to the request.
      */
@@ -193,9 +197,9 @@ export class PromisedDatabase {
     }
 
     /**
-     * Insert `row`in table.
-     * Shortcut for `INSERT INTO tableName [(...)] VALUES (...)`.
-     * `row`'s keys are used for table columns in the request. (Map or Object).
+     * Insert `row`in table.<br>
+     * Shortcut for `INSERT INTO tableName [(...)] VALUES (...)`.<br>
+     * `row`'s keys are used for table columns in the request. (Map or Object).<br>
      * if `row` is an Array, column names are omitted in the request.
      * 
      * Exemple:
@@ -212,7 +216,7 @@ export class PromisedDatabase {
      * await db.insert("foo", m);
      * ```
      * 
-     * @category shortcut
+     * @category Shortcut
      * @param tableName - name of table.
      * @param row - row to insert.
      */
@@ -226,10 +230,10 @@ export class PromisedDatabase {
     }
 
     /**
-     * Replace or insert `row` in the table.
+     * Replace or insert `row` in the table.<br>
      * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...)`.
      * @see `insert` for parameters usage and exemple
-     * @category shortcut
+     * @category Shortcut
      * @param tableName - name of table.
      * @param row - row to insert.
      */
@@ -243,12 +247,12 @@ export class PromisedDatabase {
     }
 
     /**
-     * Insert multiple rows in table.
-     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...),(...),...`.
-     * if `columnName` if `undefined` or empty, column names are omitted in the request.
-     * if `columnName` is defined, `culumnName`'s values are used as keys to get values from each row.
-     * Except if the row is an Array.
-     * **Warning**: if `columnName` is `undefined` or empty, use only Array in `rows`. With Object or Map, values order is not guaranteed.
+     * Insert multiple rows in table.<br>
+     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...),(...),...`.<br>
+     * If `columnName` if `undefined` or empty, column names are omitted in the request.<br>
+     * If `columnName` is defined, `culumnName`'s values are used as keys to get values from each row.<br>
+     * Except if the row is an Array.<br>
+     * **Warning**: if `columnName` is `undefined` or empty, use only Array in `rows`. With Object or Map, values order is not guaranteed.  
      * 
      * Exemple:
      * ```typescript
@@ -262,7 +266,7 @@ export class PromisedDatabase {
      * const c = new Map().set("name", "Conan").set("age", 53);
      * await db.insertMany("foo", ["name", "age"], a, b, c);
      * ```
-     * @category shortcut
+     * @category Shortcut
      * @param tableName - name of table.
      * @param columnNames - column names.
      * @param rows - rows to insert.
