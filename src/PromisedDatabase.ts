@@ -173,6 +173,7 @@ export class PromisedDatabase {
     /**
      * Add a table to the database.
      * Shortcut for `CREATE TABLE [IF NOT EXISTS] tableName (...)`.
+     * @category shortcut
      * @param tableName - name of the table to create.
      * @param ifNotExists - if set to true, add `IF NOT EXISTS` clause to the request.
      * @param cols - column definitions.
@@ -185,6 +186,7 @@ export class PromisedDatabase {
     /**
      * Delete a table from the database.
      * Shortcut for `DROP TABLE [IF EXISTS] tableName`.
+     * @category shortcut
      * @param tableName - name of the table.
      * @param ifExists - if set to true, add `IF EXISTS` clause to the request.
      */
