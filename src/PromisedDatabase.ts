@@ -117,7 +117,7 @@ export class PromisedDatabase {
 
     /**
      * Execute a sql request. Used for request that return data. (eg `SELECT`).
-     * Execute the callback cb for each row.
+     * Execute the callback `cb` for each row.
      * Return the number of retrieved rows.
      * @see {@link https://github.com/mapbox/node-sqlite3/wiki/API#databaseeachsql-param--callback-complete | sqlite3.Database.each} for further information.
      * @param sql - The sql request.
