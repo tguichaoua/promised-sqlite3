@@ -58,4 +58,4 @@ async function init() {
 init();
 ```
 ## Documentation
-<a href="https://github.com/baanloh/promised-sqlite3/wiki/API">API<a>
+<a href="https://baanloh.github.io/promised-sqlite3/">API<a>
