@@ -1,8 +1,5 @@
 import sqlite3 from 'sqlite3';
 
-/** @ignore */
-function error_dbNotOpened() { return new Error("The database is not open."); }
-
 export class PromisedDatabase {
 
     /** @private */
@@ -173,6 +170,7 @@ export class PromisedDatabase {
     /**
      * Add a table to the database.
      * Shortcut for `CREATE TABLE [IF NOT EXISTS] tableName (...)`.
+     * @category shortcut
      * @param tableName - name of the table to create.
      * @param ifNotExists - if set to true, add `IF NOT EXISTS` clause to the request.
      * @param cols - column definitions.
@@ -185,6 +183,7 @@ export class PromisedDatabase {
     /**
      * Delete a table from the database.
      * Shortcut for `DROP TABLE [IF EXISTS] tableName`.
+     * @category shortcut
      * @param tableName - name of the table.
      * @param ifExists - if set to true, add `IF EXISTS` clause to the request.
      */
@@ -192,4 +191,144 @@ export class PromisedDatabase {
         const ifExistsClause = ifExists ? "IF EXISTS" : "";
         return await this.run(`DROP TABLE ${ifExistsClause} ${tableName}`);
     }
+
+    /**
+     * Insert `row`in table.
+     * Shortcut for `INSERT INTO tableName [(...)] VALUES (...)`.
+     * `row`'s keys are used for table columns in the request. (Map or Object).
+     * if `row` is an Array, column names are omitted in the request.
+     * 
+     * Exemple:
+     * ```typescript
+     * // table foo
+     * // id INTEGER PRIMARY KEY AUTOINCREMENT
+     * // name TEXT
+     * // age INTEGER
+     * 
+     * await db.insert("foo", { name: "Alice", age: 20 });
+     * await db.insert("foo", [50, "Bob", 32]); // Array => column names are omitted so all values must be given.
+     * 
+     * const m = new Map().set("name", "Conan").set("age", 53);
+     * await db.insert("foo", m);
+     * ```
+     * 
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param row - row to insert.
+     */
+    async insert(tableName: string, row: any) {
+        const sql = `INSERT INTO ${tableName} ${sqlInsertParseObject(row)}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
+        }
+    }
+
+    /**
+     * Replace or insert `row` in the table.
+     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...)`.
+     * @see `insert` for parameters usage and exemple
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param row - row to insert.
+     */
+    async replace(tableName: string, row: any) {
+        const sql = `REPLACE INTO ${tableName} ${sqlInsertParseObject(row)}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
+        }
+    }
+
+    /**
+     * Insert multiple rows in table.
+     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...),(...),...`.
+     * if `columnName` if `undefined` or empty, column names are omitted in the request.
+     * if `columnName` is defined, `culumnName`'s values are used as keys to get values from each row.
+     * Except if the row is an Array.
+     * **Warning**: if `columnName` is `undefined` or empty, use only Array in `rows`. With Object or Map, values order is not guaranteed.
+     * 
+     * Exemple:
+     * ```typescript
+     * // table foo
+     * // id INTEGER PRIMARY KEY AUTOINCREMENT
+     * // name TEXT
+     * // age INTEGER
+     * 
+     * const a = {name: "Alice", age: 20 };
+     * const b = ["Bob", 32];
+     * const c = new Map().set("name", "Conan").set("age", 53);
+     * await db.insertMany("foo", ["name", "age"], a, b, c);
+     * ```
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param columnNames - column names.
+     * @param rows - rows to insert.
+     */
+    async insertMany(tableName: string, columnNames: string[] | undefined | null, ...rows: any[]) {
+        let colNames = "";
+        if (columnNames && columnNames.length !== 0)
+            colNames = `(${columnNames.join(",")})`;
+        else
+            columnNames = undefined;
+
+        const values = [];
+        for (let row of rows) {
+            if (!Array.isArray(row))
+                row = getKeysValues(row, columnNames ?? undefined).values;
+            values.push(`(${row.map(sqlifyValue).join(",")})`);
+        }
+
+        const sql = `INSERT INTO ${tableName} ${colNames} VALUES ${values.join(",")}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
+        }
+    }
+}
+
+// ===[ Helpers ] ====================================================================================
+
+/** @ignore */
+function error_dbNotOpened() { return new Error("The database is not open."); }
+
+/** @ignore */
+function sqlifyValue(o: any) {
+    if (o == undefined)
+        return "NULL";
+    if (typeof o === "string")
+        return `"${o}"`;
+    return o;
+}
+
+/** @ignore */
+function getKeysValues(o: any, keys?: any[]) {
+    if (o instanceof Map) {
+        keys = keys || Array.from(o.keys());
+        const values = keys.map(k => o.get(k));
+        return { keys, values };
+    } else {
+        keys = keys || Object.keys(o);
+        const values = keys.map(k => o[k]);
+        return { keys, values };
+    }
+}
+
+/** @ignore */
+function sqlInsertParseObject(row: any) {
+    let colNames = "";
+    let values = [];
+
+    if (Array.isArray(row))
+        values = row.map(sqlifyValue);
+    else {
+        const kv = getKeysValues(row);
+        colNames = `(${kv.keys.join(",")})`;
+        values = kv.values.map(sqlifyValue);
+    }
+
+    return `${colNames} VALUES (${values.join(",")})`;
 }
