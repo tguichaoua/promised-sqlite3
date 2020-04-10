@@ -1,3 +1,3 @@
 ## Versions
 
-<a href="v1">V 1.x</a>
+<a href="v1">v1.x</a>
