@@ -1,8 +1,5 @@
 import sqlite3 from 'sqlite3';
 
-/** @ignore */
-function error_dbNotOpened() { return new Error("The database is not open."); }
-
 export class PromisedDatabase {
 
     /** @private */
@@ -200,27 +197,51 @@ export class PromisedDatabase {
      * Shortcut for `INSERT INTO tableName [(...)] VALUES (...)`.
      * `row`'s keys are used for table columns in the request. (Map or Object).
      * if `row` is an Array, column names are omitted in the request.
+     * 
+     * Exemple:
+     * ```typescript
+     * // table foo
+     * // id INTEGER PRIMARY KEY AUTOINCREMENT
+     * // name TEXT
+     * // age INTEGER
+     * 
+     * await db.insert("foo", { name: "Jean", age: 32 });
+     * await db.insert("foo", [50, "King", 666]); // Array => column names are omitted so all values must be given.
+     * 
+     * const m = new Map();
+     * m.set("name", "Map !");
+     * m.set("age", 500);
+     * await db.insert("foo", m);
+     * ```
+     * 
      * @category shortcut
      * @param tableName - name of table.
      * @param row - row to insert.
      */
     async insert(tableName: string, row: any) {
-        const sql = this._sqlInsertParseObject(row);
-        return await this.run(`INSERT INTO ${tableName} ${sql}`);
+        const sql = `INSERT INTO ${tableName} ${sqlInsertParseObject(row)}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
+        }
     }
 
     /**
      * Replace or insert `row` in the table.
      * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...)`.
-     * `row`'s keys are used for table columns in the request. (Map or Object).
-     * if `row` is an Array, column names are omitted in the request.
+     * @see `insert` for parameters usage and exemple
      * @category shortcut
      * @param tableName - name of table.
      * @param row - row to insert.
      */
     async replace(tableName: string, row: any) {
-        const sql = this._sqlInsertParseObject(row);
-        return await this.run(`REPLACE INTO ${tableName} ${sql}`);
+        const sql = `REPLACE INTO ${tableName} ${sqlInsertParseObject(row)}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
+        }
     }
 
     /**
@@ -244,39 +265,58 @@ export class PromisedDatabase {
         const values = [];
         for (let row of rows) {
             if (!Array.isArray(row))
-                row = this._getKeysValues(row, columnNames ?? undefined).values;
-            values.push(`(${row.join(",")})`);
+                row = getKeysValues(row, columnNames ?? undefined).values;
+            values.push(`(${row.map(sqlifyValue).join(",")})`);
         }
 
-        return await this.run(`INSERT INTO ${tableName} ${colNames} VALUES ${values.join(",")}`);
-    }
-
-    // ===[ Helpers ] ====================================================================================
-
-    private _getKeysValues(o: any, keys?: any[]) {
-        if (o instanceof Map) {
-            keys = keys || Array.from(o.keys());
-            const values = keys.map(k => o.get(k));
-            return { keys, values };
-        } else {
-            keys = keys || Object.keys(o);
-            const values = keys.map(k => o[k]);
-            return { keys, values };
+        const sql = `INSERT INTO ${tableName} ${colNames} VALUES ${values.join(",")}`;
+        try {
+            return await this.run(sql);
+        } catch (error) {
+            throw { sql, error };
         }
     }
+}
 
-    private _sqlInsertParseObject(row: any) {
-        let colNames = "";
-        let values = [];
+// ===[ Helpers ] ====================================================================================
 
-        if (Array.isArray(row))
-            values = row;
-        else {
-            const kv = this._getKeysValues(row);
-            colNames = `(${kv.keys.join(",")})`;
-            values = kv.values;
-        }
+/** @ignore */
+function error_dbNotOpened() { return new Error("The database is not open."); }
 
-        return `${colNames} VALUES (${values.join(",")})`;
+/** @ignore */
+function sqlifyValue(o: any) {
+    if (o == undefined)
+        return "NULL";
+    if (typeof o === "string")
+        return `"${o}"`;
+    return o;
+}
+
+/** @ignore */
+function getKeysValues(o: any, keys?: any[]) {
+    if (o instanceof Map) {
+        keys = keys || Array.from(o.keys());
+        const values = keys.map(k => o.get(k));
+        return { keys, values };
+    } else {
+        keys = keys || Object.keys(o);
+        const values = keys.map(k => o[k]);
+        return { keys, values };
     }
+}
+
+/** @ignore */
+function sqlInsertParseObject(row: any) {
+    let colNames = "";
+    let values = [];
+
+    if (Array.isArray(row))
+        values = row.map(sqlifyValue);
+    else {
+        const kv = getKeysValues(row);
+        colNames = `(${kv.keys.join(",")})`;
+        values = kv.values.map(sqlifyValue);
+    }
+
+    return `${colNames} VALUES (${values.join(",")})`;
 }
