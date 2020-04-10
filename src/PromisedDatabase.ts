@@ -205,12 +205,10 @@ export class PromisedDatabase {
      * // name TEXT
      * // age INTEGER
      * 
-     * await db.insert("foo", { name: "Jean", age: 32 });
-     * await db.insert("foo", [50, "King", 666]); // Array => column names are omitted so all values must be given.
+     * await db.insert("foo", { name: "Alice", age: 20 });
+     * await db.insert("foo", [50, "Bob", 32]); // Array => column names are omitted so all values must be given.
      * 
-     * const m = new Map();
-     * m.set("name", "Map !");
-     * m.set("age", 500);
+     * const m = new Map().set("name", "Conan").set("age", 53);
      * await db.insert("foo", m);
      * ```
      * 
@@ -248,8 +246,22 @@ export class PromisedDatabase {
      * Insert multiple rows in table.
      * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...),(...),...`.
      * if `columnName` if `undefined` or empty, column names are omitted in the request.
-     * if `culumnName` is defined, `culumnName`'s values are used as keys to get values from each row.
+     * if `columnName` is defined, `culumnName`'s values are used as keys to get values from each row.
      * Except if the row is an Array.
+     * **Warning**: if `columnName` is `undefined` or empty, use only Array in `rows`. With Object or Map, values order is not guaranteed.
+     * 
+     * Exemple:
+     * ```typescript
+     * // table foo
+     * // id INTEGER PRIMARY KEY AUTOINCREMENT
+     * // name TEXT
+     * // age INTEGER
+     * 
+     * const a = {name: "Alice", age: 20 };
+     * const b = ["Bob", 32];
+     * const c = new Map().set("name", "Conan").set("age", 53);
+     * await db.insertMany("foo", ["name", "age"], a, b, c);
+     * ```
      * @category shortcut
      * @param tableName - name of table.
      * @param columnNames - column names.
