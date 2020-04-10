@@ -194,4 +194,89 @@ export class PromisedDatabase {
         const ifExistsClause = ifExists ? "IF EXISTS" : "";
         return await this.run(`DROP TABLE ${ifExistsClause} ${tableName}`);
     }
+
+    /**
+     * Insert `row`in table.
+     * Shortcut for `INSERT INTO tableName [(...)] VALUES (...)`.
+     * `row`'s keys are used for table columns in the request. (Map or Object).
+     * if `row` is an Array, column names are omitted in the request.
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param row - row to insert.
+     */
+    async insert(tableName: string, row: any) {
+        const sql = this._sqlInsertParseObject(row);
+        return await this.run(`INSERT INTO ${tableName} ${sql}`);
+    }
+
+    /**
+     * Replace or insert `row` in the table.
+     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...)`.
+     * `row`'s keys are used for table columns in the request. (Map or Object).
+     * if `row` is an Array, column names are omitted in the request.
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param row - row to insert.
+     */
+    async replace(tableName: string, row: any) {
+        const sql = this._sqlInsertParseObject(row);
+        return await this.run(`REPLACE INTO ${tableName} ${sql}`);
+    }
+
+    /**
+     * Insert multiple rows in table.
+     * Shortcut for `REPLACE INTO tableName [(...)] VALUES (...),(...),...`.
+     * if `columnName` if `undefined` or empty, column names are omitted in the request.
+     * if `culumnName` is defined, `culumnName`'s values are used as keys to get values from each row.
+     * Except if the row is an Array.
+     * @category shortcut
+     * @param tableName - name of table.
+     * @param columnNames - column names.
+     * @param rows - rows to insert.
+     */
+    async insertMany(tableName: string, columnNames: string[] | undefined | null, ...rows: any[]) {
+        let colNames = "";
+        if (columnNames && columnNames.length !== 0)
+            colNames = `(${columnNames.join(",")})`;
+        else
+            columnNames = undefined;
+
+        const values = [];
+        for (let row of rows) {
+            if (!Array.isArray(row))
+                row = this._getKeysValues(row, columnNames ?? undefined).values;
+            values.push(`(${row.join(",")})`);
+        }
+
+        return await this.run(`INSERT INTO ${tableName} ${colNames} VALUES ${values.join(",")}`);
+    }
+
+    // ===[ Helpers ] ====================================================================================
+
+    private _getKeysValues(o: any, keys?: any[]) {
+        if (o instanceof Map) {
+            keys = keys || Array.from(o.keys());
+            const values = keys.map(k => o.get(k));
+            return { keys, values };
+        } else {
+            keys = keys || Object.keys(o);
+            const values = keys.map(k => o[k]);
+            return { keys, values };
+        }
+    }
+
+    private _sqlInsertParseObject(row: any) {
+        let colNames = "";
+        let values = [];
+
+        if (Array.isArray(row))
+            values = row;
+        else {
+            const kv = this._getKeysValues(row);
+            colNames = `(${kv.keys.join(",")})`;
+            values = kv.values;
+        }
+
+        return `${colNames} VALUES (${values.join(",")})`;
+    }
 }
