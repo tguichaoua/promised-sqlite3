@@ -292,6 +292,39 @@ export class PromisedDatabase {
             throw { sql, error };
         }
     }
+
+    /**
+     * Return true if there is a row that match the `whereClause` in the table `tableName`.
+     * Return false otherwise.
+     * 
+     * Exemple:
+     * ```typescript
+     * // table foo
+     * // id INTEGER PRIMARY KEY AUTOINCREMENT
+     * // name TEXT
+     * // age INTEGER
+     * 
+     * await db.insert("foo", { name: "Alice", age: 20 });
+     * 
+     * console.log(await db.exists("foo", "name = ?", "Alice")); // true
+     * console.log(await db.exists("foo", "name = ? AND age < ?", "Alice", 30)); // true
+     * console.log(await db.exists("foo", "age > ?", 30)); // false
+     * 
+     * ```
+     * @category Shortcut
+     * @param tableName - Name of table.
+     * @param whereClause - A sqlite where clause.
+     * @param params - Parameters for the request.
+     */
+    async exists(tableName: string, whereClause: string, ...params: any[]) {
+        const sql = `SELECT EXISTS(SELECT 1 FROM ${tableName} WHERE ${whereClause} LIMIT 1)`;
+        try {
+            const res = await this.get(sql, ...params);
+            return res[Object.keys(res)[0]] === 1;
+        } catch (error) {
+            throw { sql, error };
+        }
+    }
 }
 
 // ===[ Helpers ] ====================================================================================
