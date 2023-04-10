@@ -1,61 +1,78 @@
 # promised-sqlite3
-A wrapper for sqlite3 node.js package to use Promise.
 
-[![NPM version](https://badge.fury.io/js/promised-sqlite3.svg)](https://www.npmjs.com/package/promised-sqlite3)
+[![npm](https://img.shields.io/npm/v/promised-sqlite3)](https://www.npmjs.com/package/promised-sqlite3)
 
-## Motivation
-<a href="https://www.npmjs.com/package/sqlite3">sqlite3</a> is a callback-based SQLite3 binding for Node.js.  
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> is a cool javascript feature.
-
-The goal of promised-sqlite3 is to provide a wrapper arround sqlite3 to provide Promise-friendly methods.
+A thin wrapper for [`sqlite3`](https://www.npmjs.com/package/sqlite3) database that expose an async API.
 
 ## Install
+
+**Note**: `sqlite3` is marked as a [peer dependency](https://flaviocopes.com/npm-peer-dependencies/), you must also install it.
+
 ```
-npm install promised-sqlite3
+npm install promised-sqlite3 sqlite3
 ```
 
 ## Usage
+
+`AsyncDatabase` is a wrapper that expose an async version of the `sqlite3.Database`'s API.
+
+### Async API
+
+The following methods of `sqlite3.Database` are available as async methods in `AsyncDatabase` :
+
+- `open`
+- `close`
+- `run`
+- `get`
+- `all`
+- `each`
+- `exec`
+
+These methods accept the same arguments as their sync version except for the `callback` one.
+Refer to the [`sqlite3`'s API reference](https://github.com/TryGhost/node-sqlite3/wiki/API) for further information on their usage.
+
+### The rest of the API
+
+`AsyncDatabase` only exposes the async methods listed above. You can access to the `sqlite3.Database` object with the `AsyncDatabase.inner` property (see example below).
+
+### Example
+
 ```javascript
-const { PromisedDatabase } = require("promised-sqlite3"); // import the class
+const { AsyncDatabase } = require("promised-sqlite3");
 
-const db = new PromisedDatabase(); // create a instance of PromisedDatabase
-// note: at this stade, the wrapped sqlite3.Database object is not created.
+(async () => {
+  try {
+    // Create the AsyncDatabase object and open the database.
+    const db = await AsyncDatabase.open("./db.sqlite");
 
-async function init() {
-    try {
-        await db.open("./db.sqlite"); // create a sqlite3.Database object & open the database on the passed filepath.
+    // Access the inner sqlite3.Database object to use the API that is not exposed by AsyncDatabase.
+    db.inner.on("trace", (sql) => console.log("[TRACE]", sql));
 
-        // run some sql request.
-        await db.run("CREATE TABLE IF NOT EXISTS foo (id INTEGER PRIMARY KEY AUTOINCREMENT, a TEXT NOT NULL, b TEXT)"); 
-        await db.run("INSERT INTO foo (a, b) VALUES (?, ?)", "alpha", "beta");
-        await db.run("INSERT INTO foo (a, b) VALUES ($goo, $hoo)", { $goo: "GOO !", $hoo: "HOO :" });
-        await db.run("INSERT INTO foo (a, b) VALUES (?, ?)", ["Value of a", "Value of b"]);
+    // Run some sql request.
+    await db.run(
+      "CREATE TABLE IF NOT EXISTS foo (id INTEGER PRIMARY KEY AUTOINCREMENT, a TEXT NOT NULL, b TEXT)"
+    );
+    await db.run("INSERT INTO foo (a, b) VALUES (?, ?)", "alpha", "beta");
+    await db.run("INSERT INTO foo (a, b) VALUES ($goo, $hoo)", {
+      $goo: "GOO !",
+      $hoo: "HOO :",
+    });
+    await db.run("INSERT INTO foo (a, b) VALUES (?, ?)", [
+      "Value of a",
+      "Value of b",
+    ]);
 
-        // read database
-        const row = await db.get("SELECT * FROM foo WHERE id = ?", 2);
-        console.log(row2);
+    // Read database.
+    const row = await db.get("SELECT * FROM foo WHERE id = ?", 2);
+    const rows = await db.all("SELECT * FROM foo");
+    await db.each("SELECT * FROM foo WHERE id > ?", 5, (row) =>
+      console.log(row)
+    );
 
-        const rows = await db.all("SELECT * FROM foo");
-        console.log(rows);
-
-        await db.each("SELECT * FROM foo WHERE id > ?", 5,
-            function(row) {
-                console.log(row);
-            }
-        );
-
-        // get the wrapped sqlite3.Database object
-        const sqliteDB = db.db;
-
-        // close the database
-        await db.close();
-
-    } catch(err) {
-        console.error(err);
-    }
-}
-
-init();
+    // Close the database.
+    await db.close();
+  } catch (err) {
+    console.error(err);
+  }
+})();
 ```
-## Documentation
-<a href="https://baanloh.github.io/promised-sqlite3/">Docs<a>
