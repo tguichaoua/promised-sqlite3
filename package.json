@@ -32,7 +32,7 @@
     "typedoc": "^0.24.1",
     "typescript": "^5.0.4"
   },
-  "dependencies": {
-    "sqlite3": "^5.1.6"
+  "peerDependencies": {
+    "sqlite3": "^5"
   }
 }
