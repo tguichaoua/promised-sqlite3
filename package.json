@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baanloh/promised-sqlite3.git"
+    "url": "https://github.com/tguichaoua/promised-sqlite3.git"
   },
   "keywords": [
     "sqlite3",
@@ -25,9 +25,9 @@
   "author": "Tristan Guichaoua",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/baanloh/promised-sqlite3/issues"
+    "url": "https://github.com/tguichaoua/promised-sqlite3/issues"
   },
-  "homepage": "https://github.com/baanloh/promised-sqlite3#readme",
+  "homepage": "https://github.com/tguichaoua/promised-sqlite3#readme",
   "devDependencies": {
     "typedoc": "^0.24.1",
     "typescript": "^5.0.4"
