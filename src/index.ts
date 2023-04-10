@@ -27,7 +27,12 @@ export class AsyncDatabase {
    * @param filename - The filename used to instantiate the {@link sqlite3.Database} object.
    * @param mode - The mode used to instantiate the {@link sqlite3.Database} object.
    */
-  static open(filename: string, mode?: number): Promise<AsyncDatabase> {
+  static open(
+    filename: string,
+    mode: number = sqlite3.OPEN_READWRITE |
+      sqlite3.OPEN_CREATE |
+      sqlite3.OPEN_FULLMUTEX
+  ): Promise<AsyncDatabase> {
     return new Promise((resolve, reject) => {
       const db = new sqlite3.Database(filename, mode, (err) => {
         if (err) reject(err);
