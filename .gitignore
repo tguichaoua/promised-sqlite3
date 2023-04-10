@@ -140,3 +140,6 @@ dist
 
 # Don't track compiled files
 dist/
+
+#Library doesn't need package-lock.json
+package-lock.json
