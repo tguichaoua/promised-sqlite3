@@ -18,8 +18,10 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "check": "tsc --noEmit",
     "clean": "rimraf ./dist",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "test": "npm run check"
   },
   "repository": {
     "type": "git",
