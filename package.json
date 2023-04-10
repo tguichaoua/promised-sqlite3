@@ -2,6 +2,18 @@
   "name": "promised-sqlite3",
   "version": "2.0.0",
   "description": "A wrapper arround sqlite3 node.js package to use promise",
+  "keywords": [
+    "sqlite3",
+    "promise",
+    "async"
+  ],
+  "author": {
+    "name": "Tristan Guichaoua",
+    "email": "tguichaoua.dev@gmail.com",
+    "url": "https://tguichaoua.github.io/"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/tguichaoua/promised-sqlite3#readme",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,17 +25,9 @@
     "type": "git",
     "url": "https://github.com/tguichaoua/promised-sqlite3.git"
   },
-  "keywords": [
-    "sqlite3",
-    "promise",
-    "async"
-  ],
-  "author": "Tristan Guichaoua",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tguichaoua/promised-sqlite3/issues"
   },
-  "homepage": "https://github.com/tguichaoua/promised-sqlite3#readme",
   "devDependencies": {
     "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
