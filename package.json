@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "docs": "typedoc ./src/ --disableOutputCheck --out ./docs/v1/ --readme none",
     "build": "tsc",
     "clean": "rm -rf ./dist",
     "rebuild": "npm run clean && npm run build",
@@ -29,7 +28,6 @@
   },
   "homepage": "https://github.com/tguichaoua/promised-sqlite3#readme",
   "devDependencies": {
-    "typedoc": "^0.24.1",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
