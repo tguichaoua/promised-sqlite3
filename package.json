@@ -20,7 +20,7 @@
     "build": "tsc",
     "check": "tsc --noEmit",
     "clean": "rimraf ./dist",
-    "prepublish": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean && npm run build",
     "test": "npm run check"
   },
   "repository": {
