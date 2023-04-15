@@ -1,6 +1,7 @@
 # promised-sqlite3
 
-[![npm](https://img.shields.io/npm/v/promised-sqlite3)](https://www.npmjs.com/package/promised-sqlite3)
+[<img alt="github" src="https://img.shields.io/badge/github-tguichaoua/promised--sqlite3-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/tguichaoua/promised-sqlite3)
+[<img alt="crates.io" src="https://img.shields.io/npm/v/promised-sqlite3?style=for-the-badge&logo=npm&logoColor=white" height="20">](https://www.npmjs.com/package/promised-sqlite3)
 
 A thin wrapper for [`sqlite3`](https://www.npmjs.com/package/sqlite3) database that expose an async API.
 
