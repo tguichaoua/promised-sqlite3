@@ -16,6 +16,7 @@ npm install promised-sqlite3 sqlite3
 ## Usage
 
 `AsyncDatabase` is a wrapper that expose an async version of the `sqlite3.Database`'s API.
+`AsyncStatement` is a wrapper that expose an async version of the `sqlite3.Statement`'s API.
 
 ### Async API
 
@@ -28,13 +29,24 @@ The following methods of `sqlite3.Database` are available as async methods in `A
 - `all`
 - `each`
 - `exec`
+- `prepare`
+
+The following methods of `sqlite3.Statement` are available as async methods in `AsyncStatement` :
+
+- `bind`
+- `reset`
+- `finalize` ?
+- `run`
+- `get`
+- `all`
+- `each`
 
 These methods accept the same arguments as their sync version except for the `callback` one.
 Refer to the [`sqlite3`'s API reference](https://github.com/TryGhost/node-sqlite3/wiki/API) for further information on their usage.
 
 ### The rest of the API
 
-`AsyncDatabase` only exposes the async methods listed above. You can access to the `sqlite3.Database` object with the `AsyncDatabase.inner` property (see example below).
+`AsyncDatabase` and `AsyncStatement` only exposes the async methods listed above. You can access to the `sqlite3.Database` or the `sqlite3.Statement` object with the `inner` property (see example below).
 
 ### Example
 
@@ -69,6 +81,10 @@ const { AsyncDatabase } = require("promised-sqlite3");
     await db.each("SELECT * FROM foo WHERE id > ?", 5, (row) =>
       console.log(row)
     );
+
+    // Create a async statement
+    const statement = await db.prepare("SELECT * FROM foo WHERE id = ?", 2);
+    const row = await statement.get();
 
     // Close the database.
     await db.close();
