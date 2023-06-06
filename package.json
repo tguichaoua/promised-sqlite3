@@ -1,6 +1,6 @@
 {
   "name": "promised-sqlite3",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A wrapper arround sqlite3 node.js package to use promise",
   "keywords": [
     "sqlite3",
