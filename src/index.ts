@@ -228,18 +228,19 @@ export class AsyncStatement {
     });
   }
 
-  // TODO: how the finalize callback work ?
-
-  // /**
-  //  * Finalizes the statement.
-  //  *
-  //  * @see {@link https://github.com/TryGhost/node-sqlite3/wiki/API#finalizecallback | sqlite3.Statement.finalize} for further informations.
-  //  */
-  // finalize(): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     this.statement.finalize((err) => {});
-  //   });
-  // }
+  /**
+   * Finalizes the statement.
+   *
+   * @see {@link https://github.com/TryGhost/node-sqlite3/wiki/API#finalizecallback | sqlite3.Statement.finalize} for further informations.
+   */
+  finalize(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.statement.finalize((err) => {
+        if (err) reject();
+        else resolve();
+      });
+    });
+  }
 
   /**
    * Binds parameters and executes the statement.
