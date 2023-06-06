@@ -35,7 +35,7 @@ The following methods of `sqlite3.Statement` are available as async methods in `
 
 - `bind`
 - `reset`
-- `finalize` ?
+- `finalize`
 - `run`
 - `get`
 - `all`
